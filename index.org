@@ -1,0 +1,24 @@
+#+TITLE: EXWM on Raspberry Pi OS Lite
+#+AUTHOR: Joseph Edwards VIII
+#+DATE: <2020-09-26 Sat>
+
+1. Install Raspberry Pi OS Lite (buster)
+2. Login as ~pi/raspberry~
+3. Enable sources in ~/etc/apt/sources.list~, then ~sudo apt update && apt upgrade~
+4. Install basic but required build tools:
+   ~sudo apt install build-essential~
+5. Install ~xorg~ and WebKitGTK+:
+   ~sudo apt install xorg xorg-dev libwebkit2gtk-4.0-dev~
+6. Prepare for latest Emacs install by installing dependencies of latest previous version in the repo:
+   ~sudo apt build-dep emacs~
+7. Get the latest Emacs, and configure it thusly:
+   ~./configure --with-imagemagick --with-xwidgets~
+8. Build and install Emacs:
+   ~make && sudo make install~
+9. Get my literate README:
+   ~git clone https://github.com/joseph8th/literatemacs.git~
+10. Open ~README.org~ in Emacs, then follow instructions to get a basic ~init.el~ installed in ~.emacs.d/~
+    - In addition, copy the ~elisp/~ directory into ~.emacs.d/~
+11. Run Emacs to install packages and debug init as needed:
+    ~emacs --debug-init~
+12. Open ~README.org~ again, and enable the EXWM entanglement. Then save, and it will tangle EXWM files.
