@@ -1,0 +1,54 @@
+#+BEGIN_COMMENT
+.. title: EXWM on Raspberry Pi OS Lite
+.. slug: exwm-on-raspberry-pi-os-lite
+.. date: 2020-11-12 15:59:41 UTC-05:00
+.. tags: emacs,exwm,pi
+.. category:
+.. link:
+.. description:
+.. type: text
+
+#+END_COMMENT
+
+
+1. Install Raspberry Pi OS Lite (buster)
+2. Login as ~pi/raspberry~
+3. Enable sources in ~/etc/apt/sources.list~, then ~sudo apt update && apt upgrade~
+4. Install basic but required build tools:
+
+   ~sudo apt install build-essential~
+
+5. Install ~xorg~ and WebKitGTK+:
+
+   ~sudo apt install xorg xorg-dev libwebkit2gtk-4.0-dev~
+
+6. Prepare for latest Emacs install by installing dependencies of latest previous version in the repo:
+
+   ~sudo apt build-dep emacs~
+
+7. Get the latest Emacs, and configure it thusly:
+
+   ~./configure --with-imagemagick --with-xwidgets~
+
+8. Build and install Emacs:
+
+   ~make && sudo make install~
+
+9. Get my literate README:
+
+   ~git clone https://github.com/joseph8th/literatemacs.git~
+
+   - Open ~README.org~ in Emacs, then follow instructions to get a basic ~init.el~ installed in ~.emacs.d/~
+   - In addition, copy the ~elisp/~ directory into ~.emacs.d/~
+   - Run Emacs to install packages and debug init as needed:
+
+      ~emacs --debug-init~
+
+10. Open ~README.org~ again, and enable the EXWM entanglement. Then save, and it will tangle EXWM files.
+
+    #+begin_src bash
+      cp xinitrc.exwm ~/.xinitrc
+      ln -s exwm-init.el ~/.emacs.d/
+    #+end_src
+
+11. Reboot and do ~startx~ after login. Debug init as needed.
