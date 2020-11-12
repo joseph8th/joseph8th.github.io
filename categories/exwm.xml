@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot</title><link>https://joseph8th.github.io/</link><description>Meandering Musings</description><atom:link href="https://joseph8th.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 21:09:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>EXWM on Raspberry Pi OS Lite</title><link>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;ol class="org-ol"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about exwm)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/exwm.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 21:09:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>EXWM on Raspberry Pi OS Lite</title><link>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;ol class="org-ol"&gt;
 &lt;li&gt;Install Raspberry Pi OS Lite (buster)&lt;/li&gt;
 &lt;li&gt;Login as &lt;code&gt;pi/raspberry&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Enable sources in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;, then &lt;code&gt;sudo apt update &amp;amp;&amp;amp; apt upgrade&lt;/code&gt;&lt;/li&gt;
@@ -72,14 +72,4 @@ Open &lt;code&gt;README.org&lt;/code&gt; again, and enable the EXWM entanglement
 &lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 
 &lt;li&gt;Reboot and do &lt;code&gt;startx&lt;/code&gt; after login. Debug init as needed.&lt;/li&gt;
-&lt;/ol&gt;</description><category>emacs</category><category>exwm</category><category>pi</category><guid>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</guid><pubDate>Thu, 12 Nov 2020 20:59:41 GMT</pubDate></item><item><title>Blog is a Weird Word</title><link>https://joseph8th.github.io/posts/blog-is-a-weird-word/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
-Hello, World.
-&lt;/p&gt;
-
-&lt;p&gt;
-I've had many blogs off and on over the years, but I was never satisfied with the blogging platforms I chose, which, admittedly, is not a very large set. OK, it was two: WordPress and Octopress. Octopress at least satisfied my penchant for working in the terminal, and let me use my favorite editor (Emacs, obviously), but I was broke at the time and self-hosting. Eventually, I just let it die off naturally.
-&lt;/p&gt;
-
-&lt;p&gt;
-Now I'm not broke, but I'm still cheap. With GitHub Pages, and Nikola, I can write posts in Emacs Org Mode and publish for free and with ease. Let's see how long it lasts.
-&lt;/p&gt;</description><category>blogging</category><guid>https://joseph8th.github.io/posts/blog-is-a-weird-word/</guid><pubDate>Thu, 12 Nov 2020 20:43:26 GMT</pubDate></item></channel></rss>
+&lt;/ol&gt;</description><category>emacs</category><category>exwm</category><category>pi</category><guid>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</guid><pubDate>Thu, 12 Nov 2020 20:59:41 GMT</pubDate></item></channel></rss>

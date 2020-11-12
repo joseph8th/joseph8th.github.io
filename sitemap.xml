@@ -15,15 +15,27 @@
  </url>
  <url>
   <loc>https://joseph8th.github.io/archive.html</loc>
-  <lastmod>2020-11-12T20:55:00Z</lastmod>
+  <lastmod>2020-11-12T22:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://joseph8th.github.io/categories/</loc>
-  <lastmod>2020-11-12T20:55:00Z</lastmod>
+  <lastmod>2020-11-12T21:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://joseph8th.github.io/categories/blogging/</loc>
   <lastmod>2020-11-12T20:55:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://joseph8th.github.io/categories/emacs/</loc>
+  <lastmod>2020-11-12T21:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://joseph8th.github.io/categories/exwm/</loc>
+  <lastmod>2020-11-12T21:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://joseph8th.github.io/categories/pi/</loc>
+  <lastmod>2020-11-12T21:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://joseph8th.github.io/galleries/</loc>
@@ -36,5 +48,9 @@
  <url>
   <loc>https://joseph8th.github.io/posts/blog-is-a-weird-word/</loc>
   <lastmod>2020-11-12T20:55:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</loc>
+  <lastmod>2020-11-12T21:00:00Z</lastmod>
  </url>
 </urlset>
