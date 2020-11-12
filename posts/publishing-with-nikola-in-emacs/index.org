@@ -89,7 +89,7 @@ When you're done writing your amazing blog post, just save it.
 
 Now try previewing your new post by running ~nikola-webserver-start~. Notice that that this is a *live preview*, and if you make changes and save again, you will see them when you refresh your browser.
 
-You may want to run ~nikola-build~ to make sure the ~index.html~ gets updated.
+Next, run ~nikola-build~ to make sure everything is rebuilt and updated.
 
 When you're happy with the final result, then just publish it with ~nikola-github-deploy~.
 
