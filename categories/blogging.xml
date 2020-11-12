@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about blogging)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/blogging.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 20:55:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Blog is a Weird Word</title><link>https://joseph8th.github.io/posts/blog-is-a-weird-word/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
+Hello, World.
+&lt;/p&gt;
+
+&lt;p&gt;
+I've had many blogs off and on over the years, but I was never satisfied with the blogging platforms I chose, which, admittedly, is not a very large set. OK, it was two: WordPress and Octopress. Octopress at least satisfied my penchant for working in the terminal, and let me use my favorite editor (Emacs, obviously), but I was broke at the time and self-hosting. Eventually, I just let it die off naturally.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now I'm not broke, but I'm still cheap. With GitHub Pages, and Nikola, I can write posts in Emacs Org Mode and publish for free and with ease. Let's see how long it lasts.
+&lt;/p&gt;</description><category>blogging</category><guid>https://joseph8th.github.io/posts/blog-is-a-weird-word/</guid><pubDate>Thu, 12 Nov 2020 20:43:26 GMT</pubDate></item></channel></rss>

@@ -1,0 +1,4 @@
+Sitemap: https://joseph8th.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: joseph8th.github.io
