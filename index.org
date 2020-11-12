@@ -17,8 +17,11 @@
    ~make && sudo make install~
 9. Get my literate README:
    ~git clone https://github.com/joseph8th/literatemacs.git~
-10. Open ~README.org~ in Emacs, then follow instructions to get a basic ~init.el~ installed in ~.emacs.d/~
-    - In addition, copy the ~elisp/~ directory into ~.emacs.d/~
-11. Run Emacs to install packages and debug init as needed:
-    ~emacs --debug-init~
-12. Open ~README.org~ again, and enable the EXWM entanglement. Then save, and it will tangle EXWM files.
+   a. Open ~README.org~ in Emacs, then follow instructions to get a basic ~init.el~ installed in ~.emacs.d/~
+   b. In addition, copy the ~elisp/~ directory into ~.emacs.d/~
+   c. Run Emacs to install packages and debug init as needed:
+      ~emacs --debug-init~
+10. Open ~README.org~ again, and enable the EXWM entanglement. Then save, and it will tangle EXWM files.
+    ~cp xinitrc.exwm ~/.xinitrc~
+    ~ln -s exwm-init.el ~/.emacs.d/~
+11. Reboot and do ~startx~ after login. Debug init as needed.
