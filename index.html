@@ -87,9 +87,9 @@ Publishing Emacs Org Mode files to <a href="https://pages.github.com/">GitHub Pa
 The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
 </p>
 
-<div id="outline-container-org8f9e760" class="outline-2">
-<h2 id="org8f9e760">Get Nikola Working</h2>
-<div class="outline-text-2" id="text-org8f9e760">
+<div id="outline-container-org42cbf14" class="outline-2">
+<h2 id="org42cbf14">Get Nikola Working</h2>
+<div class="outline-text-2" id="text-org42cbf14">
 <p>
 Before we start, save yourself a headache and <b>don't</b> install Nikola in a Python virtual environment. Or if you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install it in the <code>global</code> environment. This works fine in the terminal, but we're going to be writing some extra elisp for the <code>nikola.el</code> package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
 </p>
@@ -104,10 +104,10 @@ The end result will be your first blog post on your GitHub Page. Now that you kn
 </div>
 </div>
 
-<div id="outline-container-orgf74b4bc" class="outline-2">
-<h2 id="orgf74b4bc">Install and Configure <code>nikola.el</code>
+<div id="outline-container-org7742ecf" class="outline-2">
+<h2 id="org7742ecf">Install and Configure <code>nikola.el</code>
 </h2>
-<div class="outline-text-2" id="text-orgf74b4bc">
+<div class="outline-text-2" id="text-org7742ecf">
 <p>
 We're going to use the "simple wrapper" <code>nikola.el</code> package as a base. Follow <a href="https://gitlab.com/drymerisnothere/nikola-el">these instructions</a> to install and configure it.
 </p>
@@ -128,10 +128,10 @@ We want to default to Org files, instead of HTML, so here's the <code>use-packag
 </div>
 </div>
 
-<div id="outline-container-org1bef49b" class="outline-2">
-<h2 id="org1bef49b">Add Wrapper for <code>github_deploy</code>
+<div id="outline-container-orgd3c318e" class="outline-2">
+<h2 id="orgd3c318e">Add Wrapper for <code>github_deploy</code>
 </h2>
-<div class="outline-text-2" id="text-org1bef49b">
+<div class="outline-text-2" id="text-orgd3c318e">
 <p>
 At this point, we <b>could</b> just start writing by using the <code>nikola-new-post</code> command. It will open an Org file and you can start typing, as I am right now.
 </p>
@@ -182,9 +182,9 @@ buffer."))
 </div>
 </div>
 
-<div id="outline-container-org85a3019" class="outline-2">
-<h2 id="org85a3019">Write and Publish from Emacs</h2>
-<div class="outline-text-2" id="text-org85a3019">
+<div id="outline-container-orgcb22d08" class="outline-2">
+<h2 id="orgcb22d08">Write and Publish from Emacs</h2>
+<div class="outline-text-2" id="text-orgcb22d08">
 <p>
 Now you can evaluate the <code>init.el</code> buffer, or restart Emacs, and do <code>nikola-new-post</code>. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
 </p>
@@ -209,8 +209,24 @@ Now try previewing your new post by running <code>nikola-webserver-start</code>.
 </p>
 
 <p>
+You may want to run <code>nikola-build</code> to make sure the <code>index.html</code> gets updated.
+</p>
+
+<p>
 When you're happy with the final result, then just publish it with <code>nikola-github-deploy</code>.
 </p>
+</div>
+</div>
+
+<div id="outline-container-org5b2ed6c" class="outline-2">
+<h2 id="org5b2ed6c">Additional Resources</h2>
+<div class="outline-text-2" id="text-org5b2ed6c">
+<ul class="org-ul">
+<li>
+<b>Syntax Highlighting</b>: If you included source blocks in your Org file, you probably noticed that syntax highlighting isn't supported. I'm going to look at <a href="https://github.com/redguardtoo/org2nikola">org2nikola</a> package to add <code>highlight.js</code> support at some point.</li>
+<li>
+<b>Themes and Templates</b>: Since I'm almost as new at this as you, the reader, are, I've got jack. I'm going to look into <a href="https://getnikola.com/creating-a-theme.html">Nikola theme creation</a> at some point in the future, and if suddenly this blog looks better, it's because I learned something. I'll probably blog about it!</li>
+</ul>
 </div>
 </div>
                 </div>

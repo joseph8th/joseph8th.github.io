@@ -89,4 +89,11 @@ When you're done writing your amazing blog post, just save it.
 
 Now try previewing your new post by running ~nikola-webserver-start~. Notice that that this is a *live preview*, and if you make changes and save again, you will see them when you refresh your browser.
 
+You may want to run ~nikola-build~ to make sure the ~index.html~ gets updated.
+
 When you're happy with the final result, then just publish it with ~nikola-github-deploy~.
+
+* Additional Resources
+
+- *Syntax Highlighting*: If you included source blocks in your Org file, you probably noticed that syntax highlighting isn't supported. I'm going to look at [[https://github.com/redguardtoo/org2nikola][org2nikola]] package to add ~highlight.js~ support at some point.
+- *Themes and Templates*: Since I'm almost as new at this as you, the reader, are, I've got jack. I'm going to look into [[https://getnikola.com/creating-a-theme.html][Nikola theme creation]] at some point in the future, and if suddenly this blog looks better, it's because I learned something. I'll probably blog about it!
