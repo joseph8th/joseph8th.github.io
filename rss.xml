@@ -1,5 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot</title><link>https://joseph8th.github.io/</link><description>Meandering Musings</description><atom:link href="https://joseph8th.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 21:09:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>EXWM on Raspberry Pi OS Lite</title><link>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;ol class="org-ol"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot</title><link>https://joseph8th.github.io/</link><description>Meandering Musings</description><atom:link href="https://joseph8th.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 23:21:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
+Publishing Emacs Org Mode files to &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; with &lt;a href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; is fairly straight-forward, &lt;a href="https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/"&gt;if you're using the command-line&lt;/a&gt;. But if you want, as I did, to write and publish from within Emacs, then there's more setup involved. It's still not terribly difficult, however. I did this all today.
+&lt;/p&gt;
+
+&lt;p&gt;
+The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
+&lt;/p&gt;
+
+&lt;div id="outline-container-org8f9e760" class="outline-2"&gt;
+&lt;h2 id="org8f9e760"&gt;Get Nikola Working&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8f9e760"&gt;
+&lt;p&gt;
+Before we start, save yourself a headache and &lt;b&gt;don't&lt;/b&gt; install Nikola in a Python virtual environment. Or if you're using &lt;a href="https://github.com/pyenv/pyenv"&gt;pyenv&lt;/a&gt;, install it in the &lt;code&gt;global&lt;/code&gt; environment. This works fine in the terminal, but we're going to be writing some extra elisp for the &lt;code&gt;nikola.el&lt;/code&gt; package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
+&lt;/p&gt;
+
+&lt;p&gt;
+Next, follow the instructions in &lt;a href="https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/"&gt;this excellent tutorial&lt;/a&gt; to get all the pieces working together, and to learn the command-line way of doing things as a fallback.
+&lt;/p&gt;
+
+&lt;p&gt;
+The end result will be your first blog post on your GitHub Page. Now that you know it works, let's move on to setting up Emacs so you never have to leave it to write and publish.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf74b4bc" class="outline-2"&gt;
+&lt;h2 id="orgf74b4bc"&gt;Install and Configure &lt;code&gt;nikola.el&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf74b4bc"&gt;
+&lt;p&gt;
+We're going to use the "simple wrapper" &lt;code&gt;nikola.el&lt;/code&gt; package as a base. Follow &lt;a href="https://gitlab.com/drymerisnothere/nikola-el"&gt;these instructions&lt;/a&gt; to install and configure it.
+&lt;/p&gt;
+
+&lt;p&gt;
+We want to default to Org files, instead of HTML, so here's the &lt;code&gt;use-package&lt;/code&gt; config I have in my &lt;code&gt;init.el&lt;/code&gt;. Note that I've turned on &lt;code&gt;nikola-verbose&lt;/code&gt; and &lt;code&gt;nikola-webserver-auto&lt;/code&gt; as well as setting the default extension to &lt;code&gt;"org"&lt;/code&gt;:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;;; Nikola.el config
+(use-package nikola
+  :config
+  (setq nikola-output-root-directory "~/Dev/mine/joseph8th.github.io/")
+  (setq nikola-verbose t)
+  (setq nikola-webserver-auto t)
+  (setq nikola-new-post-extension "org")
+  (setq nikola-new-page-extension "org"))
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1bef49b" class="outline-2"&gt;
+&lt;h2 id="org1bef49b"&gt;Add Wrapper for &lt;code&gt;github_deploy&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1bef49b"&gt;
+&lt;p&gt;
+At this point, we &lt;b&gt;could&lt;/b&gt; just start writing by using the &lt;code&gt;nikola-new-post&lt;/code&gt; command. It will open an Org file and you can start typing, as I am right now.
+&lt;/p&gt;
+
+&lt;p&gt;
+The problem comes when we run &lt;code&gt;nikola-deploy&lt;/code&gt;. That command basically runs &lt;code&gt;nikola deploy&lt;/code&gt; in a shell, &lt;b&gt;but that's not the command we want to run&lt;/b&gt;. We want to run &lt;code&gt;nikola github_deploy&lt;/code&gt;, as we did on the command-line.
+&lt;/p&gt;
+
+&lt;p&gt;
+So you'll also need to add the following &lt;code&gt;nikola-github-deploy&lt;/code&gt; function to your &lt;code&gt;init.el&lt;/code&gt;, which I simply whittled down from the &lt;code&gt;nikola-deploy&lt;/code&gt;:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;;; Custom nikola-github-deploy function
+(defun nikola-github-deploy ()
+  "Deploys the site to GitHub using github_deploy subcommand."
+  (interactive)
+  (message "Deploying the site to GitHub pages...")
+  (async-start
+   `(lambda ()
+      ,(async-inject-variables "\\(nikola-\\)")
+      (setq output nil)
+      (let ((default-directory nikola-output-root-directory))
+	(run-hook-with-args 'nikola-deploy-before-hook "")
+	(if (not (eq nikola-deploy-before-hook-script nil))
+	    (setq output (shell-command-to-string
+			  nikola-deploy-before-hook-script)))
+	(setq output (shell-command-to-string (concat nikola-command " github_deploy")))
+	(if (not (eq nikola-deploy-after-hook-script nil))
+	    (setq output (shell-command-to-string
+			  nikola-deploy-after-hook-script)))
+	(run-hook-with-args 'nikola-deploy-before-hook ""))
+      output)
+   (lambda (result)
+     (if (cl-search "This command needs to run inside an existing Nikola site."
+		    result)
+	 (if (eq nikola-verbose t)
+	     (message "Something went wrong. You may want to set nikola-verbo\
+se to t and retry it.")
+	   (message "Something went wrong. You may want to check the *Nikola*\
+buffer."))
+       (message "Site deployed correctly."))
+     (if (eq nikola-verbose t)
+	 (save-window-excursion
+	   (switch-to-buffer "*Nikola*")
+	   (let ((inhibit-read-only t))
+	     (insert result)))))))
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org85a3019" class="outline-2"&gt;
+&lt;h2 id="org85a3019"&gt;Write and Publish from Emacs&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org85a3019"&gt;
+&lt;p&gt;
+Now you can evaluate the &lt;code&gt;init.el&lt;/code&gt; buffer, or restart Emacs, and do &lt;code&gt;nikola-new-post&lt;/code&gt;. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
+&lt;/p&gt;
+
+&lt;p&gt;
+You'll immediately notice that, unlike the command-line experience you had earlier, the meta is not included at the top of the new buffer that opens. If your new post is named &lt;code&gt;publishing-with-nikola-in-emacs.org&lt;/code&gt;, then the meta will be in the same directory, and named &lt;code&gt;publishing-with-nikola-in-emacs.meta&lt;/code&gt;. You will have to edit it separately.
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+.. title: Publishing with Nikola in Emacs
+.. slug: publishing-with-nikola-in-emacs
+.. date: 2020-11-12 17:25:34
+.. tags: emacs,nikola,blogging
+&lt;/pre&gt;
+
+&lt;p&gt;
+When you're done writing your amazing blog post, just save it.
+&lt;/p&gt;
+
+&lt;p&gt;
+Now try previewing your new post by running &lt;code&gt;nikola-webserver-start&lt;/code&gt;. Notice that that this is a &lt;b&gt;live preview&lt;/b&gt;, and if you make changes and save again, you will see them when you refresh your browser.
+&lt;/p&gt;
+
+&lt;p&gt;
+When you're happy with the final result, then just publish it with &lt;code&gt;nikola-github-deploy&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>blogging</category><category>emacs</category><category>nikola</category><guid>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</guid><pubDate>Thu, 12 Nov 2020 22:25:34 GMT</pubDate></item><item><title>EXWM on Raspberry Pi OS Lite</title><link>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;ol class="org-ol"&gt;
 &lt;li&gt;Install Raspberry Pi OS Lite (buster)&lt;/li&gt;
 &lt;li&gt;Login as &lt;code&gt;pi/raspberry&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Enable sources in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;, then &lt;code&gt;sudo apt update &amp;amp;&amp;amp; apt upgrade&lt;/code&gt;&lt;/li&gt;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about emacs)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/emacs.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 23:21:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about nikola)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/nikola.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Nov 2020 23:21:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
 Publishing Emacs Org Mode files to &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; with &lt;a href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; is fairly straight-forward, &lt;a href="https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/"&gt;if you're using the command-line&lt;/a&gt;. But if you want, as I did, to write and publish from within Emacs, then there's more setup involved. It's still not terribly difficult, however. I did this all today.
 &lt;/p&gt;
 
@@ -130,77 +130,4 @@ Now try previewing your new post by running &lt;code&gt;nikola-webserver-start&l
 When you're happy with the final result, then just publish it with &lt;code&gt;nikola-github-deploy&lt;/code&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>blogging</category><category>emacs</category><category>nikola</category><guid>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</guid><pubDate>Thu, 12 Nov 2020 22:25:34 GMT</pubDate></item><item><title>EXWM on Raspberry Pi OS Lite</title><link>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;ol class="org-ol"&gt;
-&lt;li&gt;Install Raspberry Pi OS Lite (buster)&lt;/li&gt;
-&lt;li&gt;Login as &lt;code&gt;pi/raspberry&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Enable sources in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;, then &lt;code&gt;sudo apt update &amp;amp;&amp;amp; apt upgrade&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-Install basic but required build tools:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;sudo apt install build-essential&lt;/code&gt;
-&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-Install &lt;code&gt;xorg&lt;/code&gt; and WebKitGTK+:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;sudo apt install xorg xorg-dev libwebkit2gtk-4.0-dev&lt;/code&gt;
-&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-Prepare for latest Emacs install by installing dependencies of latest previous version in the repo:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;sudo apt build-dep emacs&lt;/code&gt;
-&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-Get the latest Emacs, and configure it thusly:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;./configure --with-imagemagick --with-xwidgets&lt;/code&gt;
-&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-Build and install Emacs:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;make &amp;amp;&amp;amp; sudo make install&lt;/code&gt;
-&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-Get my literate README:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;git clone https://github.com/joseph8th/literatemacs.git&lt;/code&gt;
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;Open &lt;code&gt;README.org&lt;/code&gt; in Emacs, then follow instructions to get a basic &lt;code&gt;init.el&lt;/code&gt; installed in &lt;code&gt;.emacs.d/&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;In addition, copy the &lt;code&gt;elisp/&lt;/code&gt; directory into &lt;code&gt;.emacs.d/&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-Run Emacs to install packages and debug init as needed:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;emacs --debug-init&lt;/code&gt;
-&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;
-Open &lt;code&gt;README.org&lt;/code&gt; again, and enable the EXWM entanglement. Then save, and it will tangle EXWM files.
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    cp xinitrc.exwm ~/.xinitrc
-    ln -s exwm-init.el ~/.emacs.d/
-&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-
-&lt;li&gt;Reboot and do &lt;code&gt;startx&lt;/code&gt; after login. Debug init as needed.&lt;/li&gt;
-&lt;/ol&gt;</description><category>emacs</category><category>exwm</category><category>pi</category><guid>https://joseph8th.github.io/posts/exwm-on-raspberry-pi-os-lite/</guid><pubDate>Thu, 12 Nov 2020 20:59:41 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>blogging</category><category>emacs</category><category>nikola</category><guid>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</guid><pubDate>Thu, 12 Nov 2020 22:25:34 GMT</pubDate></item></channel></rss>

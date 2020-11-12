@@ -1,0 +1,92 @@
+Publishing Emacs Org Mode files to [[https://pages.github.com/][GitHub Pages]] with [[https://getnikola.com/][Nikola]] is fairly straight-forward, [[https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/][if you're using the command-line]]. But if you want, as I did, to write and publish from within Emacs, then there's more setup involved. It's still not terribly difficult, however. I did this all today.
+
+The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
+
+* Get Nikola Working
+
+Before we start, save yourself a headache and *don't* install Nikola in a Python virtual environment. Or if you're using [[https://github.com/pyenv/pyenv][pyenv]], install it in the ~global~ environment. This works fine in the terminal, but we're going to be writing some extra elisp for the ~nikola.el~ package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
+
+Next, follow the instructions in [[https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/][this excellent tutorial]] to get all the pieces working together, and to learn the command-line way of doing things as a fallback.
+
+The end result will be your first blog post on your GitHub Page. Now that you know it works, let's move on to setting up Emacs so you never have to leave it to write and publish.
+
+* Install and Configure ~nikola.el~
+
+We're going to use the "simple wrapper" ~nikola.el~ package as a base. Follow [[https://gitlab.com/drymerisnothere/nikola-el][these instructions]] to install and configure it.
+
+We want to default to Org files, instead of HTML, so here's the ~use-package~ config I have in my ~init.el~. Note that I've turned on ~nikola-verbose~ and ~nikola-webserver-auto~ as well as setting the default extension to ~"org"~:
+
+#+BEGIN_SRC elisp
+  ;; Nikola.el config
+  (use-package nikola
+    :config
+    (setq nikola-output-root-directory "~/Dev/mine/joseph8th.github.io/")
+    (setq nikola-verbose t)
+    (setq nikola-webserver-auto t)
+    (setq nikola-new-post-extension "org")
+    (setq nikola-new-page-extension "org"))
+#+END_SRC
+
+* Add Wrapper for ~github_deploy~
+
+At this point, we *could* just start writing by using the ~nikola-new-post~ command. It will open an Org file and you can start typing, as I am right now.
+
+The problem comes when we run ~nikola-deploy~. That command basically runs ~nikola deploy~ in a shell, *but that's not the command we want to run*. We want to run ~nikola github_deploy~, as we did on the command-line.
+
+So you'll also need to add the following ~nikola-github-deploy~ function to your ~init.el~, which I simply whittled down from the ~nikola-deploy~:
+
+#+BEGIN_SRC elisp
+  ;; Custom nikola-github-deploy function
+  (defun nikola-github-deploy ()
+    "Deploys the site to GitHub using github_deploy subcommand."
+    (interactive)
+    (message "Deploying the site to GitHub pages...")
+    (async-start
+     `(lambda ()
+        ,(async-inject-variables "\\(nikola-\\)")
+        (setq output nil)
+        (let ((default-directory nikola-output-root-directory))
+          (run-hook-with-args 'nikola-deploy-before-hook "")
+          (if (not (eq nikola-deploy-before-hook-script nil))
+              (setq output (shell-command-to-string
+                            nikola-deploy-before-hook-script)))
+          (setq output (shell-command-to-string (concat nikola-command " github_deploy")))
+          (if (not (eq nikola-deploy-after-hook-script nil))
+              (setq output (shell-command-to-string
+                            nikola-deploy-after-hook-script)))
+          (run-hook-with-args 'nikola-deploy-before-hook ""))
+        output)
+     (lambda (result)
+       (if (cl-search "This command needs to run inside an existing Nikola site."
+                      result)
+           (if (eq nikola-verbose t)
+               (message "Something went wrong. You may want to set nikola-verbo\
+  se to t and retry it.")
+             (message "Something went wrong. You may want to check the *Nikola*\
+  buffer."))
+         (message "Site deployed correctly."))
+       (if (eq nikola-verbose t)
+           (save-window-excursion
+             (switch-to-buffer "*Nikola*")
+             (let ((inhibit-read-only t))
+               (insert result)))))))
+#+END_SRC
+
+* Write and Publish from Emacs
+
+Now you can evaluate the ~init.el~ buffer, or restart Emacs, and do ~nikola-new-post~. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
+
+You'll immediately notice that, unlike the command-line experience you had earlier, the meta is not included at the top of the new buffer that opens. If your new post is named ~publishing-with-nikola-in-emacs.org~, then the meta will be in the same directory, and named ~publishing-with-nikola-in-emacs.meta~. You will have to edit it separately.
+
+#+BEGIN_EXAMPLE
+  .. title: Publishing with Nikola in Emacs
+  .. slug: publishing-with-nikola-in-emacs
+  .. date: 2020-11-12 17:25:34
+  .. tags: emacs,nikola,blogging
+#+END_EXAMPLE
+
+When you're done writing your amazing blog post, just save it.
+
+Now try previewing your new post by running ~nikola-webserver-start~. Notice that that this is a *live preview*, and if you make changes and save again, you will see them when you refresh your browser.
+
+When you're happy with the final result, then just publish it with ~nikola-github-deploy~.
