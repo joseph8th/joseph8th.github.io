@@ -1389,7 +1389,7 @@ NAVIGATION_LINKS = {
         ('/archive.html', 'Archives', 'fa fa-folder-open'),
         ('/categories/index.html', 'Tags', 'fa fa-tags'),
         ('/rss.xml', 'RSS', 'fa fa-rss'),
-        ('/about.html', 'About Me', 'fa fa-user'),
+        ('/stories/about-me', 'About Me', 'fa fa-user'),
         ('https://github.com/joseph8th', 'My Github', 'fab fa-github'),
     )
 }
