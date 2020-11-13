@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about emacs)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/emacs.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Nov 2020 05:01:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about emacs)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/emacs.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Nov 2020 05:10:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
 Publishing Emacs Org Mode files to &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; with &lt;a href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; is fairly straight-forward, &lt;a href="https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/"&gt;if you're using the command-line&lt;/a&gt;. But if you want, as I did, to write and publish from within Emacs, then there's more setup involved. It's still not terribly difficult, however. I did this all today.
 &lt;/p&gt;
 
@@ -7,9 +7,9 @@ Publishing Emacs Org Mode files to &lt;a href="https://pages.github.com/"&gt;Git
 The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
 &lt;/p&gt;
 
-&lt;div id="outline-container-org42f2843" class="outline-2"&gt;
-&lt;h2 id="org42f2843"&gt;Get Nikola Working&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org42f2843"&gt;
+&lt;div id="outline-container-orgad4cc6f" class="outline-2"&gt;
+&lt;h2 id="orgad4cc6f"&gt;Get Nikola Working&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgad4cc6f"&gt;
 &lt;p&gt;
 Before we start, save yourself a headache and &lt;b&gt;don't&lt;/b&gt; install Nikola in a Python virtual environment. Or if you're using &lt;a href="https://github.com/pyenv/pyenv"&gt;pyenv&lt;/a&gt;, install it in the &lt;code&gt;global&lt;/code&gt; environment. This works fine in the terminal, but we're going to be writing some extra elisp for the &lt;code&gt;nikola.el&lt;/code&gt; package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
 &lt;/p&gt;
@@ -24,9 +24,9 @@ The end result will be your first blog post on your GitHub Page. Now that you kn
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org64c0a8c" class="outline-2"&gt;
-&lt;h2 id="org64c0a8c"&gt;Install and Configure &lt;code&gt;nikola.el&lt;/code&gt;&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org64c0a8c"&gt;
+&lt;div id="outline-container-org122f525" class="outline-2"&gt;
+&lt;h2 id="org122f525"&gt;Install and Configure &lt;code&gt;nikola.el&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org122f525"&gt;
 &lt;p&gt;
 We're going to use the "simple wrapper" &lt;code&gt;nikola.el&lt;/code&gt; package as a base. Follow &lt;a href="https://gitlab.com/drymerisnothere/nikola-el"&gt;these instructions&lt;/a&gt; to install and configure it.
 &lt;/p&gt;
@@ -36,20 +36,20 @@ We want to default to Org files, instead of HTML, so here's the &lt;code&gt;use-
 &lt;/p&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;;; Nikola.el config&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;use-package&lt;/span&gt; &lt;span class="nv"&gt;nikola&lt;/span&gt;
-  &lt;span class="ss"&gt;:config&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-output-root-directory&lt;/span&gt; &lt;span class="s"&gt;"~/Dev/mine/joseph8th.github.io/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-verbose&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-webserver-auto&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-new-post-extension&lt;/span&gt; &lt;span class="s"&gt;"org"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-new-page-extension&lt;/span&gt; &lt;span class="s"&gt;"org"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;use-package&lt;/span&gt; &lt;span class="nv"&gt;nikola&lt;/span&gt;
+  &lt;span class="nv"&gt;:config&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-output-root-directory&lt;/span&gt; &lt;span class="s"&gt;"~/Dev/mine/joseph8th.github.io/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-verbose&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-webserver-auto&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-new-post-extension&lt;/span&gt; &lt;span class="s"&gt;"org"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;nikola-new-page-extension&lt;/span&gt; &lt;span class="s"&gt;"org"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org97c5c19" class="outline-2"&gt;
-&lt;h2 id="org97c5c19"&gt;Add Wrapper for &lt;code&gt;github_deploy&lt;/code&gt;&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org97c5c19"&gt;
+&lt;div id="outline-container-orgd33722e" class="outline-2"&gt;
+&lt;h2 id="orgd33722e"&gt;Add Wrapper for &lt;code&gt;github_deploy&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd33722e"&gt;
 &lt;p&gt;
 At this point, we &lt;b&gt;could&lt;/b&gt; just start writing by using the &lt;code&gt;nikola-new-post&lt;/code&gt; command. It will open an Org file and you can start typing, as I am right now.
 &lt;/p&gt;
@@ -63,46 +63,46 @@ So you'll also need to add the following &lt;code&gt;nikola-github-deploy&lt;/co
 &lt;/p&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;;; Custom nikola-github-deploy function&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;nikola-github-deploy&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;nikola-github-deploy&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="s"&gt;"Deploys the site to GitHub using github_deploy subcommand."&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;interactive&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Deploying the site to GitHub pages..."&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;async-start&lt;/span&gt;
-   &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt;
-      &lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;async-inject-variables&lt;/span&gt; &lt;span class="s"&gt;"\\(nikola-\\)"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;default-directory&lt;/span&gt; &lt;span class="nv"&gt;nikola-output-root-directory&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;run-hook-with-args&lt;/span&gt; &lt;span class="ss"&gt;'nikola-deploy-before-hook&lt;/span&gt; &lt;span class="s"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-deploy-before-hook-script&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;shell-command-to-string&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;interactive&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Deploying the site to GitHub pages..."&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;async-start&lt;/span&gt;
+   &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+      &lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;async-inject-variables&lt;/span&gt; &lt;span class="s"&gt;"\\(nikola-\\)"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;default-directory&lt;/span&gt; &lt;span class="nv"&gt;nikola-output-root-directory&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;run-hook-with-args&lt;/span&gt; &lt;span class="ss"&gt;'nikola-deploy-before-hook&lt;/span&gt; &lt;span class="s"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-deploy-before-hook-script&lt;/span&gt; &lt;span class="nv"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;shell-command-to-string&lt;/span&gt;
 			  &lt;span class="nv"&gt;nikola-deploy-before-hook-script&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;shell-command-to-string&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;concat&lt;/span&gt; &lt;span class="nv"&gt;nikola-command&lt;/span&gt; &lt;span class="s"&gt;" github_deploy"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-deploy-after-hook-script&lt;/span&gt; &lt;span class="no"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;shell-command-to-string&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;shell-command-to-string&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;concat&lt;/span&gt; &lt;span class="nv"&gt;nikola-command&lt;/span&gt; &lt;span class="s"&gt;" github_deploy"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-deploy-after-hook-script&lt;/span&gt; &lt;span class="nv"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;setq&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;shell-command-to-string&lt;/span&gt;
 			  &lt;span class="nv"&gt;nikola-deploy-after-hook-script&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;run-hook-with-args&lt;/span&gt; &lt;span class="ss"&gt;'nikola-deploy-before-hook&lt;/span&gt; &lt;span class="s"&gt;""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;run-hook-with-args&lt;/span&gt; &lt;span class="ss"&gt;'nikola-deploy-before-hook&lt;/span&gt; &lt;span class="s"&gt;""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
       &lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;cl-search&lt;/span&gt; &lt;span class="s"&gt;"This command needs to run inside an existing Nikola site."&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cl-search&lt;/span&gt; &lt;span class="s"&gt;"This command needs to run inside an existing Nikola site."&lt;/span&gt;
 		    &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-verbose&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Something went wrong. You may want to set nikola-verbo\&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-verbose&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Something went wrong. You may want to set nikola-verbo\&lt;/span&gt;
 &lt;span class="s"&gt;se to t and retry it."&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Something went wrong. You may want to check the *Nikola*\&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Something went wrong. You may want to check the *Nikola*\&lt;/span&gt;
 &lt;span class="s"&gt;buffer."&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Site deployed correctly."&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-verbose&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;save-window-excursion&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;switch-to-buffer&lt;/span&gt; &lt;span class="s"&gt;"*Nikola*"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;inhibit-read-only&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;insert&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;message&lt;/span&gt; &lt;span class="s"&gt;"Site deployed correctly."&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eq&lt;/span&gt; &lt;span class="nv"&gt;nikola-verbose&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;save-window-excursion&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;switch-to-buffer&lt;/span&gt; &lt;span class="s"&gt;"*Nikola*"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;inhibit-read-only&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;insert&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org10367e4" class="outline-2"&gt;
-&lt;h2 id="org10367e4"&gt;Write and Publish from Emacs&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org10367e4"&gt;
+&lt;div id="outline-container-orge3dba4e" class="outline-2"&gt;
+&lt;h2 id="orge3dba4e"&gt;Write and Publish from Emacs&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge3dba4e"&gt;
 &lt;p&gt;
 Now you can evaluate the &lt;code&gt;init.el&lt;/code&gt; buffer, or restart Emacs, and do &lt;code&gt;nikola-new-post&lt;/code&gt;. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
 &lt;/p&gt;
@@ -136,9 +136,9 @@ When you're happy with the final result, then just publish it with &lt;code&gt;n
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org60b7d5e" class="outline-2"&gt;
-&lt;h2 id="org60b7d5e"&gt;Additional Resources&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org60b7d5e"&gt;
+&lt;div id="outline-container-org9d67d59" class="outline-2"&gt;
+&lt;h2 id="org9d67d59"&gt;Additional Resources&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9d67d59"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;Syntax Highlighting&lt;/b&gt;: If you included source blocks in your Org file, you probably noticed that syntax highlighting isn't supported. I'm going to look at &lt;a href="https://github.com/redguardtoo/org2nikola"&gt;org2nikola&lt;/a&gt; package to add &lt;code&gt;highlight.js&lt;/code&gt; support at some point.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;Themes and Templates&lt;/b&gt;: Since I'm almost as new at this as you, the reader, are, I've got jack. I'm going to look into &lt;a href="https://getnikola.com/creating-a-theme.html"&gt;Nikola theme creation&lt;/a&gt; at some point in the future, and if suddenly this blog looks better, it's because I learned something. I'll probably blog about it!&lt;/li&gt;

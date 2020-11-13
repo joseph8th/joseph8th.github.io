@@ -16,7 +16,7 @@ We're going to use the "simple wrapper" ~nikola.el~ package as a base. Follow [[
 
 We want to default to Org files, instead of HTML, so here's the ~use-package~ config I have in my ~init.el~. Note that I've turned on ~nikola-verbose~ and ~nikola-webserver-auto~ as well as setting the default extension to ~"org"~:
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
   ;; Nikola.el config
   (use-package nikola
     :config
@@ -35,7 +35,7 @@ The problem comes when we run ~nikola-deploy~. That command basically runs ~niko
 
 So you'll also need to add the following ~nikola-github-deploy~ function to your ~init.el~, which I simply whittled down from the ~nikola-deploy~:
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
   ;; Custom nikola-github-deploy function
   (defun nikola-github-deploy ()
     "Deploys the site to GitHub using github_deploy subcommand."
