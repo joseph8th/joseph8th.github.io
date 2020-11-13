@@ -87,9 +87,9 @@ Publishing Emacs Org Mode files to <a href="https://pages.github.com/">GitHub Pa
 The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
 </p>
 
-<div id="outline-container-orgc49c71b" class="outline-2">
-<h2 id="orgc49c71b">Get Nikola Working</h2>
-<div class="outline-text-2" id="text-orgc49c71b">
+<div id="outline-container-org42f2843" class="outline-2">
+<h2 id="org42f2843">Get Nikola Working</h2>
+<div class="outline-text-2" id="text-org42f2843">
 <p>
 Before we start, save yourself a headache and <b>don't</b> install Nikola in a Python virtual environment. Or if you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install it in the <code>global</code> environment. This works fine in the terminal, but we're going to be writing some extra elisp for the <code>nikola.el</code> package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
 </p>
@@ -104,10 +104,10 @@ The end result will be your first blog post on your GitHub Page. Now that you kn
 </div>
 </div>
 
-<div id="outline-container-org6a911ad" class="outline-2">
-<h2 id="org6a911ad">Install and Configure <code>nikola.el</code>
+<div id="outline-container-org64c0a8c" class="outline-2">
+<h2 id="org64c0a8c">Install and Configure <code>nikola.el</code>
 </h2>
-<div class="outline-text-2" id="text-org6a911ad">
+<div class="outline-text-2" id="text-org64c0a8c">
 <p>
 We're going to use the "simple wrapper" <code>nikola.el</code> package as a base. Follow <a href="https://gitlab.com/drymerisnothere/nikola-el">these instructions</a> to install and configure it.
 </p>
@@ -116,22 +116,22 @@ We're going to use the "simple wrapper" <code>nikola.el</code> package as a base
 We want to default to Org files, instead of HTML, so here's the <code>use-package</code> config I have in my <code>init.el</code>. Note that I've turned on <code>nikola-verbose</code> and <code>nikola-webserver-auto</code> as well as setting the default extension to <code>"org"</code>:
 </p>
 
-<div class="highlight"><pre><span></span>;; Nikola.el config
-(use-package nikola
-  :config
-  (setq nikola-output-root-directory "~/Dev/mine/joseph8th.github.io/")
-  (setq nikola-verbose t)
-  (setq nikola-webserver-auto t)
-  (setq nikola-new-post-extension "org")
-  (setq nikola-new-page-extension "org"))
+<div class="highlight"><pre><span></span><span class="c1">;; Nikola.el config</span>
+<span class="p">(</span><span class="nb">use-package</span> <span class="nv">nikola</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">nikola-output-root-directory</span> <span class="s">"~/Dev/mine/joseph8th.github.io/"</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">nikola-verbose</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">nikola-webserver-auto</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">nikola-new-post-extension</span> <span class="s">"org"</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">nikola-new-page-extension</span> <span class="s">"org"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org33c98b9" class="outline-2">
-<h2 id="org33c98b9">Add Wrapper for <code>github_deploy</code>
+<div id="outline-container-org97c5c19" class="outline-2">
+<h2 id="org97c5c19">Add Wrapper for <code>github_deploy</code>
 </h2>
-<div class="outline-text-2" id="text-org33c98b9">
+<div class="outline-text-2" id="text-org97c5c19">
 <p>
 At this point, we <b>could</b> just start writing by using the <code>nikola-new-post</code> command. It will open an Org file and you can start typing, as I am right now.
 </p>
@@ -144,47 +144,47 @@ The problem comes when we run <code>nikola-deploy</code>. That command basically
 So you'll also need to add the following <code>nikola-github-deploy</code> function to your <code>init.el</code>, which I simply whittled down from the <code>nikola-deploy</code>:
 </p>
 
-<div class="highlight"><pre><span></span>;; Custom nikola-github-deploy function
-(defun nikola-github-deploy ()
-  "Deploys the site to GitHub using github_deploy subcommand."
-  (interactive)
-  (message "Deploying the site to GitHub pages...")
-  (async-start
-   `(lambda ()
-      ,(async-inject-variables "\\(nikola-\\)")
-      (setq output nil)
-      (let ((default-directory nikola-output-root-directory))
-	(run-hook-with-args 'nikola-deploy-before-hook "")
-	(if (not (eq nikola-deploy-before-hook-script nil))
-	    (setq output (shell-command-to-string
-			  nikola-deploy-before-hook-script)))
-	(setq output (shell-command-to-string (concat nikola-command " github_deploy")))
-	(if (not (eq nikola-deploy-after-hook-script nil))
-	    (setq output (shell-command-to-string
-			  nikola-deploy-after-hook-script)))
-	(run-hook-with-args 'nikola-deploy-before-hook ""))
-      output)
-   (lambda (result)
-     (if (cl-search "This command needs to run inside an existing Nikola site."
-		    result)
-	 (if (eq nikola-verbose t)
-	     (message "Something went wrong. You may want to set nikola-verbo\
-se to t and retry it.")
-	   (message "Something went wrong. You may want to check the *Nikola*\
-buffer."))
-       (message "Site deployed correctly."))
-     (if (eq nikola-verbose t)
-	 (save-window-excursion
-	   (switch-to-buffer "*Nikola*")
-	   (let ((inhibit-read-only t))
-	     (insert result)))))))
+<div class="highlight"><pre><span></span><span class="c1">;; Custom nikola-github-deploy function</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">nikola-github-deploy</span> <span class="p">()</span>
+  <span class="s">"Deploys the site to GitHub using github_deploy subcommand."</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">message</span> <span class="s">"Deploying the site to GitHub pages..."</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">async-start</span>
+   <span class="o">`</span><span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+      <span class="o">,</span><span class="p">(</span><span class="nv">async-inject-variables</span> <span class="s">"\\(nikola-\\)"</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">output</span> <span class="no">nil</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">default-directory</span> <span class="nv">nikola-output-root-directory</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">run-hook-with-args</span> <span class="ss">'nikola-deploy-before-hook</span> <span class="s">""</span><span class="p">)</span>
+	<span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">nikola-deploy-before-hook-script</span> <span class="no">nil</span><span class="p">))</span>
+	    <span class="p">(</span><span class="k">setq</span> <span class="nv">output</span> <span class="p">(</span><span class="nv">shell-command-to-string</span>
+			  <span class="nv">nikola-deploy-before-hook-script</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">setq</span> <span class="nv">output</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">nikola-command</span> <span class="s">" github_deploy"</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">nikola-deploy-after-hook-script</span> <span class="no">nil</span><span class="p">))</span>
+	    <span class="p">(</span><span class="k">setq</span> <span class="nv">output</span> <span class="p">(</span><span class="nv">shell-command-to-string</span>
+			  <span class="nv">nikola-deploy-after-hook-script</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">run-hook-with-args</span> <span class="ss">'nikola-deploy-before-hook</span> <span class="s">""</span><span class="p">))</span>
+      <span class="nv">output</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">result</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">cl-search</span> <span class="s">"This command needs to run inside an existing Nikola site."</span>
+		    <span class="nv">result</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">nikola-verbose</span> <span class="no">t</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nv">message</span> <span class="s">"Something went wrong. You may want to set nikola-verbo\</span>
+<span class="s">se to t and retry it."</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nv">message</span> <span class="s">"Something went wrong. You may want to check the *Nikola*\</span>
+<span class="s">buffer."</span><span class="p">))</span>
+       <span class="p">(</span><span class="nv">message</span> <span class="s">"Site deployed correctly."</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">nikola-verbose</span> <span class="no">t</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nv">save-window-excursion</span>
+	   <span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="s">"*Nikola*"</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">inhibit-read-only</span> <span class="no">t</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nv">insert</span> <span class="nv">result</span><span class="p">)))))))</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org34141f7" class="outline-2">
-<h2 id="org34141f7">Write and Publish from Emacs</h2>
-<div class="outline-text-2" id="text-org34141f7">
+<div id="outline-container-org10367e4" class="outline-2">
+<h2 id="org10367e4">Write and Publish from Emacs</h2>
+<div class="outline-text-2" id="text-org10367e4">
 <p>
 Now you can evaluate the <code>init.el</code> buffer, or restart Emacs, and do <code>nikola-new-post</code>. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
 </p>
@@ -218,9 +218,9 @@ When you're happy with the final result, then just publish it with <code>nikola-
 </div>
 </div>
 
-<div id="outline-container-org11b64bd" class="outline-2">
-<h2 id="org11b64bd">Additional Resources</h2>
-<div class="outline-text-2" id="text-org11b64bd">
+<div id="outline-container-org60b7d5e" class="outline-2">
+<h2 id="org60b7d5e">Additional Resources</h2>
+<div class="outline-text-2" id="text-org60b7d5e">
 <ul class="org-ul">
 <li>
 <b>Syntax Highlighting</b>: If you included source blocks in your Org file, you probably noticed that syntax highlighting isn't supported. I'm going to look at <a href="https://github.com/redguardtoo/org2nikola">org2nikola</a> package to add <code>highlight.js</code> support at some point.</li>
