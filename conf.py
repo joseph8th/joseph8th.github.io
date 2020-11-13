@@ -137,13 +137,13 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 #          with a ``/``, otherwise end them with ``/index.html`` — or
 #          else they won’t be highlighted when active.
 
-NAVIGATION_LINKS = {
-    DEFAULT_LANG: (
-        ("/archive.html", "Archive"),
-        ("/categories/", "Tags"),
-        ("/rss.xml", "RSS feed"),
-    ),
-}
+# NAVIGATION_LINKS = {
+#     DEFAULT_LANG: (
+#         ("/archive.html", "Archive"),
+#         ("/categories/", "Tags"),
+#         ("/rss.xml", "RSS feed"),
+#     ),
+# }
 
 # Alternative navigation links. Works the same way NAVIGATION_LINKS does,
 # although themes may not always support them. (translatable)
@@ -153,34 +153,34 @@ NAVIGATION_ALT_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "bootblog4"
+THEME = "zen"
 
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.
-THEME_COLOR = '#5670d4'
+# THEME_COLOR = '#5670d4'
 
 # Theme configuration. Fully theme-dependent. (translatable)
 # Examples below are for bootblog4.
 # bootblog4 supports: featured_large featured_small featured_on_mobile
 #                     featured_large_image_on_mobile featured_strip_html sidebar
 # bootstrap4 supports: navbar_light (defaults to False)
-THEME_CONFIG = {
-    DEFAULT_LANG: {
-        # Show the latest featured post in a large box, with the previewimage as its background.
-        'featured_large': False,
-        # Show the first (remaining) two featured posts in small boxes.
-        'featured_small': False,
-        # Show featured posts on mobile.
-        'featured_on_mobile': True,
-        # Show image in `featured_large` on mobile.
-        # `featured_small` displays them only on desktop.
-        'featured_large_image_on_mobile': True,
-        # Strip HTML from featured post text.
-        'featured_strip_html': False,
-        # Contents of the sidebar, If empty, the sidebar is not displayed.
-        'sidebar': ''
-    }
-}
+# THEME_CONFIG = {
+#     DEFAULT_LANG: {
+#         # Show the latest featured post in a large box, with the previewimage as its background.
+#         'featured_large': False,
+#         # Show the first (remaining) two featured posts in small boxes.
+#         'featured_small': False,
+#         # Show featured posts on mobile.
+#         'featured_on_mobile': True,
+#         # Show image in `featured_large` on mobile.
+#         # `featured_small` displays them only on desktop.
+#         'featured_large_image_on_mobile': True,
+#         # Strip HTML from featured post text.
+#         'featured_strip_html': False,
+#         # Contents of the sidebar, If empty, the sidebar is not displayed.
+#         'sidebar': ''
+#     }
+# }
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
 # (translatable)
@@ -1381,3 +1381,18 @@ COMPILERS["orgmode"] = [".org"]
 # Add org files to posts and pages
 POSTS = POSTS + (("posts/*.org", "posts", "post.tmpl"),)
 PAGES = PAGES + (("stories/*.org", "stories", "story.tmpl"),)
+
+# For Zen theme
+NAVIGATION_LINKS = {
+    DEFAULT_LANG: (
+        ('/index.html', 'Home', 'fa fa-home'),
+        ('/archive.html', 'Archives', 'fa fa-folder-open'),
+        ('/categories/index.html', 'Tags', 'fa fa-tags'),
+        ('/rss.xml', 'RSS', 'fa fa-rss'),
+        ('https://getnikola.com', 'About me', 'fa fa-user'),
+        ('https://twitter.com/getnikola', 'My Twitter', 'fab fa-twitter'),
+        ('https://github.com/getnikola', 'My Github', 'fab fa-github'),
+    )
+}
+
+DATE_FANCINESS = 2
