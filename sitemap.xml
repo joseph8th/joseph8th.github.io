@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://joseph8th.github.io/</loc>
-  <lastmod>2020-11-12T20:55:00Z</lastmod>
+  <lastmod>2020-11-13T05:32:00Z</lastmod>
  </url>
  <url>
   <loc>https://joseph8th.github.io/2020/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://joseph8th.github.io/archive.html</loc>
-  <lastmod>2020-11-13T05:20:00Z</lastmod>
+  <lastmod>2020-11-13T05:28:00Z</lastmod>
  </url>
  <url>
   <loc>https://joseph8th.github.io/categories/</loc>
@@ -60,5 +60,9 @@
  <url>
   <loc>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</loc>
   <lastmod>2020-11-12T23:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://joseph8th.github.io/stories/about-me/</loc>
+  <lastmod>2020-11-13T05:32:00Z</lastmod>
  </url>
 </urlset>

@@ -1,0 +1,5 @@
+Joseph E. Edwards VIII is the Lead Software Engineer at CIELO Enterprise Solutions.
+
+Currently residing in Miami, Florida, USA.
+
+Primary focus is Python development, with extensive PHP and Javascript experience.
