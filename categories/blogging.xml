@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about blogging)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/blogging.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Sun, 15 Nov 2020 00:23:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>notroot (Posts about blogging)</title><link>https://joseph8th.github.io/</link><description></description><atom:link href="https://joseph8th.github.io/categories/blogging.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:jedwards8th@gmail.com"&gt;Joseph Edwards VIII&lt;/a&gt; </copyright><lastBuildDate>Sun, 15 Nov 2020 00:29:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing with Nikola in Emacs</title><link>https://joseph8th.github.io/posts/publishing-with-nikola-in-emacs/</link><dc:creator>Joseph Edwards VIII</dc:creator><description>&lt;p&gt;
 Publishing Emacs Org Mode files to &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; with &lt;a href="https://getnikola.com/"&gt;Nikola&lt;/a&gt; is fairly straight-forward, &lt;a href="https://mindtoilet.github.io/posts/how-to-write-a-blog-using-nikola/"&gt;if you're using the command-line&lt;/a&gt;. But if you want, as I did, to write and publish from within Emacs, then there's more setup involved. It's still not terribly difficult, however. I did this all today.
 &lt;/p&gt;
 
@@ -7,9 +7,9 @@ Publishing Emacs Org Mode files to &lt;a href="https://pages.github.com/"&gt;Git
 The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
 &lt;/p&gt;
 
-&lt;div id="outline-container-orgc95e176" class="outline-2"&gt;
-&lt;h2 id="orgc95e176"&gt;Get Nikola Working&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc95e176"&gt;
+&lt;div id="outline-container-org74fd930" class="outline-2"&gt;
+&lt;h2 id="org74fd930"&gt;Get Nikola Working&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org74fd930"&gt;
 &lt;p&gt;
 Before we start, save yourself a headache and &lt;b&gt;don't&lt;/b&gt; install Nikola in a Python virtual environment. Or if you're using &lt;a href="https://github.com/pyenv/pyenv"&gt;pyenv&lt;/a&gt;, install it in the &lt;code&gt;global&lt;/code&gt; environment. This works fine in the terminal, but we're going to be writing some extra elisp for the &lt;code&gt;nikola.el&lt;/code&gt; package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
 &lt;/p&gt;
@@ -24,9 +24,9 @@ The end result will be your first blog post on your GitHub Page. Now that you kn
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc7e1515" class="outline-2"&gt;
-&lt;h2 id="orgc7e1515"&gt;Install and Configure &lt;code&gt;nikola.el&lt;/code&gt;&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc7e1515"&gt;
+&lt;div id="outline-container-orge84f443" class="outline-2"&gt;
+&lt;h2 id="orge84f443"&gt;Install and Configure &lt;code&gt;nikola.el&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge84f443"&gt;
 &lt;p&gt;
 We're going to use the "simple wrapper" &lt;code&gt;nikola.el&lt;/code&gt; package as a base. Follow &lt;a href="https://gitlab.com/drymerisnothere/nikola-el"&gt;these instructions&lt;/a&gt; to install and configure it.
 &lt;/p&gt;
@@ -47,9 +47,9 @@ We want to default to Org files, instead of HTML, so here's the &lt;code&gt;use-
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgafa233c" class="outline-2"&gt;
-&lt;h2 id="orgafa233c"&gt;Add Wrapper for &lt;code&gt;github_deploy&lt;/code&gt;&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgafa233c"&gt;
+&lt;div id="outline-container-orgab03d59" class="outline-2"&gt;
+&lt;h2 id="orgab03d59"&gt;Add Wrapper for &lt;code&gt;github_deploy&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgab03d59"&gt;
 &lt;p&gt;
 At this point, we &lt;b&gt;could&lt;/b&gt; just start writing by using the &lt;code&gt;nikola-new-post&lt;/code&gt; command. It will open an Org file and you can start typing, as I am right now.
 &lt;/p&gt;
@@ -100,9 +100,9 @@ So you'll also need to add the following &lt;code&gt;nikola-github-deploy&lt;/co
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1d3bf1e" class="outline-2"&gt;
-&lt;h2 id="org1d3bf1e"&gt;Write and Publish from Emacs&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1d3bf1e"&gt;
+&lt;div id="outline-container-org63cd297" class="outline-2"&gt;
+&lt;h2 id="org63cd297"&gt;Write and Publish from Emacs&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org63cd297"&gt;
 &lt;p&gt;
 Now you can evaluate the &lt;code&gt;init.el&lt;/code&gt; buffer, or restart Emacs, and do &lt;code&gt;nikola-new-post&lt;/code&gt;. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
 &lt;/p&gt;
@@ -136,9 +136,9 @@ When you're happy with the final result, then just publish it with &lt;code&gt;n
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4fe6c31" class="outline-2"&gt;
-&lt;h2 id="org4fe6c31"&gt;Additional Resources&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4fe6c31"&gt;
+&lt;div id="outline-container-org3182955" class="outline-2"&gt;
+&lt;h2 id="org3182955"&gt;Additional Resources&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3182955"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;b&gt;Syntax Highlighting&lt;/b&gt;: If you included source blocks in your Org file, you probably noticed that syntax highlighting isn't supported. I'm going to look at &lt;a href="https://github.com/redguardtoo/org2nikola"&gt;org2nikola&lt;/a&gt; package to add &lt;code&gt;highlight.js&lt;/code&gt; support at some point.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;Themes and Templates&lt;/b&gt;: Since I'm almost as new at this as you, the reader, are, I've got jack. I'm going to look into &lt;a href="https://getnikola.com/creating-a-theme.html"&gt;Nikola theme creation&lt;/a&gt; at some point in the future, and if suddenly this blog looks better, it's because I learned something. I'll probably blog about it!&lt;/li&gt;
