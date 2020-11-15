@@ -1806,10 +1806,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight pre .vm { color: #f8f8f2 } /* Name.Variable.Magic */
 .highlight pre .il { color: #ae81ff } /* Literal.Number.Integer.Long */
 
+/* My customizations */
 article.post-text h1.entry-title {
     text-align: left;
     margin: 6px 0;
 }
+
 .social { width: 80px; }
 .social ul { width: 80px; }
+
+h2 code, h3 code, h4 code, h5 code {
+    font-size: inherit;
+    background-color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    padding: 0;
+}
 
