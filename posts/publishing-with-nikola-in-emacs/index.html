@@ -71,9 +71,9 @@ Publishing Emacs Org Mode files to <a href="https://pages.github.com/">GitHub Pa
 The final blog is going to be very vanilla, so I've included some additional resources to play with, as much for my own reference as for you, the reader's.
 </p>
 
-<div id="outline-container-org74fd930" class="outline-2">
-<h2 id="org74fd930">Get Nikola Working</h2>
-<div class="outline-text-2" id="text-org74fd930">
+<div id="outline-container-orge3495fb" class="outline-2">
+<h2 id="orge3495fb">Get Nikola Working</h2>
+<div class="outline-text-2" id="text-orge3495fb">
 <p>
 Before we start, save yourself a headache and <b>don't</b> install Nikola in a Python virtual environment. Or if you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install it in the <code>global</code> environment. This works fine in the terminal, but we're going to be writing some extra elisp for the <code>nikola.el</code> package. I have no doubt there's a way to get this package working with virtual environments, but as of this writing, I haven't figured it out.
 </p>
@@ -88,10 +88,10 @@ The end result will be your first blog post on your GitHub Page. Now that you kn
 </div>
 </div>
 
-<div id="outline-container-orge84f443" class="outline-2">
-<h2 id="orge84f443">Install and Configure <code>nikola.el</code>
+<div id="outline-container-orgd7f3787" class="outline-2">
+<h2 id="orgd7f3787">Install and Configure <code>nikola.el</code>
 </h2>
-<div class="outline-text-2" id="text-orge84f443">
+<div class="outline-text-2" id="text-orgd7f3787">
 <p>
 We're going to use the "simple wrapper" <code>nikola.el</code> package as a base. Follow <a href="https://gitlab.com/drymerisnothere/nikola-el">these instructions</a> to install and configure it.
 </p>
@@ -112,10 +112,10 @@ We want to default to Org files, instead of HTML, so here's the <code>use-packag
 </div>
 </div>
 
-<div id="outline-container-orgab03d59" class="outline-2">
-<h2 id="orgab03d59">Add Wrapper for <code>github_deploy</code>
+<div id="outline-container-org7f88ff8" class="outline-2">
+<h2 id="org7f88ff8">Add Wrapper for <code>github_deploy</code>
 </h2>
-<div class="outline-text-2" id="text-orgab03d59">
+<div class="outline-text-2" id="text-org7f88ff8">
 <p>
 At this point, we <b>could</b> just start writing by using the <code>nikola-new-post</code> command. It will open an Org file and you can start typing, as I am right now.
 </p>
@@ -166,9 +166,9 @@ So you'll also need to add the following <code>nikola-github-deploy</code> funct
 </div>
 </div>
 
-<div id="outline-container-org63cd297" class="outline-2">
-<h2 id="org63cd297">Write and Publish from Emacs</h2>
-<div class="outline-text-2" id="text-org63cd297">
+<div id="outline-container-org1c6cd9f" class="outline-2">
+<h2 id="org1c6cd9f">Write and Publish from Emacs</h2>
+<div class="outline-text-2" id="text-org1c6cd9f">
 <p>
 Now you can evaluate the <code>init.el</code> buffer, or restart Emacs, and do <code>nikola-new-post</code>. Emacs will ask for the title, and create the post files, and open a buffer to write a new post.
 </p>
@@ -202,9 +202,9 @@ When you're happy with the final result, then just publish it with <code>nikola-
 </div>
 </div>
 
-<div id="outline-container-org3182955" class="outline-2">
-<h2 id="org3182955">Additional Resources</h2>
-<div class="outline-text-2" id="text-org3182955">
+<div id="outline-container-org3879673" class="outline-2">
+<h2 id="org3879673">Additional Resources</h2>
+<div class="outline-text-2" id="text-org3879673">
 <ul class="org-ul">
 <li>
 <b>Syntax Highlighting</b>: If you included source blocks in your Org file, you probably noticed that syntax highlighting isn't supported. I'm going to look at <a href="https://github.com/redguardtoo/org2nikola">org2nikola</a> package to add <code>highlight.js</code> support at some point.</li>
